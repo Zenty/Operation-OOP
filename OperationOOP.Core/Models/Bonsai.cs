@@ -1,10 +1,12 @@
+using System.Text.Json.Serialization;
+
 namespace OperationOOP.Core.Models;
 public class Bonsai : Plant
 {
     public BonsaiStyle Style { get; set; }
-    public CareLevel CareLevel { get; set; }
 }
 
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum BonsaiStyle
 {
     Chokkan,    // Formal Upright
@@ -12,12 +14,4 @@ public enum BonsaiStyle
     Shakan,     // Slanting
     Kengai,     // Cascade
     HanKengai   // Semi-cascade
-}
-
-public enum CareLevel
-{
-    Beginner,
-    Intermediate,
-    Advanced,
-    Master
 }

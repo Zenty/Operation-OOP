@@ -1,5 +1,5 @@
 ﻿namespace OperationOOP.Core.Models;
-public class Lily
+public class Lily : Plant
 {
 
 }

@@ -14,13 +14,13 @@ public class CreateBonsai : IEndpoint
         BonsaiStyle Style,
         CareLevel CareLevel
         );
-    public record Response(int id);
+    public record Response(int Id);
 
     private static Ok<Response> Handle(Request request, IDatabase db)
     {
         var bonsai = new Bonsai();
 
-        bonsai.Id = db.Bonsais.Any()
+        bonsai.Id = db.Bonsais.Count != 0
             ? db.Bonsais.Max(bonsai => bonsai.Id) + 1
             : 1;
         bonsai.Name = request.Name;

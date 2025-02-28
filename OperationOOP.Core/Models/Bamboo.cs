@@ -1,5 +1,5 @@
 ﻿namespace OperationOOP.Core.Models;
-public class Bamboo
+public class Bamboo : Plant
 {
 
 }

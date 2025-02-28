@@ -1,5 +1,5 @@
 ﻿namespace OperationOOP.Core.Models;
-public class Lotus
+public class Lotus : Plant
 {
 
 }

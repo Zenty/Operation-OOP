@@ -6,7 +6,7 @@ public class Bonsai : Plant
     public BonsaiStyle Style { get; set; }
 }
 
-[JsonConverter(typeof(JsonStringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))] // To Show the text in Swagger.
 public enum BonsaiStyle
 {
     Chokkan,    // Formal Upright

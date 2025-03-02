@@ -13,7 +13,7 @@ public abstract class Plant
     public CareLevel CareLevel { get; set; }
 }
 
-[JsonConverter(typeof(JsonStringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))] // To Show the text in Swagger.
 public enum CareLevel
 {
     Beginner,

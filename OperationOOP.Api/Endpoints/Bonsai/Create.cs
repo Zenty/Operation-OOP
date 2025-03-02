@@ -32,6 +32,7 @@ public class CreateBonsai : IEndpoint
         bonsai.CareLevel = request.CareLevel;
 
         db.Bonsais.Add(bonsai);
+        db.Plants.Add(bonsai);
 
         return TypedResults.Ok(new Response(bonsai.Id));
     }

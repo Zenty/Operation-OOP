@@ -1,9 +1,9 @@
 ﻿namespace OperationOOP.Api.Endpoints;
-public class GetLotus : IEndpoint
+public class GetPlant : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
-        .MapGet("/plants/lotuses/{id}", Handle)
-        .WithSummary("Lotus flowers");
+        .MapGet("/plants/{id}", Handle)
+        .WithSummary("Plants");
 
     public record Request(int Id);
 
@@ -19,17 +19,17 @@ public class GetLotus : IEndpoint
 
     private static Response Handle([AsParameters] Request request, IDatabase db)
     {
-        var lotus = db.Lotuses.Find(lotus => lotus.Id == request.Id);
+        var plant = db.Plants.Find(plant => plant.Id == request.Id);
 
-        // map lotus to response dto
+        // map plant to response dto
         var response = new Response(
-            Id: lotus.Id,
-            Name: lotus.Name,
-            Species: lotus.Species,
-            AgeYears: lotus.AgeYears,
-            LastWatered: lotus.LastWatered,
-            LastPruned: lotus.LastPruned,
-            CareLevel: lotus.CareLevel
+            Id: plant.Id,
+            Name: plant.Name,
+            Species: plant.Species,
+            AgeYears: plant.AgeYears,
+            LastWatered: plant.LastWatered,
+            LastPruned: plant.LastPruned,
+            CareLevel: plant.CareLevel
             );
 
         return response;

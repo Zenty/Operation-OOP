@@ -2,7 +2,7 @@
 public class GetLily : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
-        .MapGet("/lilies/{id}", Handle)
+        .MapGet("/plants/lilies/{id}", Handle)
         .WithSummary("Lily flowers");
 
     public record Request(int Id);

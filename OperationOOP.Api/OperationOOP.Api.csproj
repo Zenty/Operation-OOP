@@ -15,4 +15,8 @@
     <ProjectReference Include="..\OperationOOP.Core\OperationOOP.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Endpoints\Sorted\" />
+  </ItemGroup>
+
 </Project>

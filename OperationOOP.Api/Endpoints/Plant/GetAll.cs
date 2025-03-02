@@ -1,14 +1,14 @@
 ﻿namespace OperationOOP.Api.Endpoints;
-public class GetAllBonsais : IEndpoint
+public class GetAllPlants : IEndpoint
 {
     // Mapping
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
-        .MapGet("/plants/bonsais", Handle)
-        .WithSummary("Bonsai trees");
+        .MapGet("/plants", Handle)
+        .WithSummary("Plants");
 
     // Request and Response types
     public record Response(
-       int Id,
+        int Id,
         string Name,
         string Species,
         int AgeYears,
@@ -20,7 +20,7 @@ public class GetAllBonsais : IEndpoint
     //Logic
     private static List<Response> Handle(IDatabase db)
     {
-        return db.Bonsais
+        return db.Plants
             .Select(item => new Response(
                 Id: item.Id,
                 Name: item.Name,

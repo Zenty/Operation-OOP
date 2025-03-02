@@ -2,7 +2,7 @@
 public class CreateBamboo : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
-        .MapPost("/bamboos", Handle)
+        .MapPost("/plants/bamboos", Handle)
         .WithSummary("Bamboo trees");
 
     public record Request(
@@ -17,6 +17,7 @@ public class CreateBamboo : IEndpoint
 
     private static Ok<Response> Handle(Request request, IDatabase db)
     {
+        // Create a new Bamboo
         var bamboo = new Bamboo();
 
         bamboo.Id = db.Bamboos.Count != 0
@@ -30,7 +31,21 @@ public class CreateBamboo : IEndpoint
         bamboo.CareLevel = request.CareLevel;
 
         db.Bamboos.Add(bamboo);
-        db.Plants.Add(bamboo);
+
+        // Create a new Plant (Bamboo)
+        var plant = new Bamboo();
+
+        plant.Id = db.Plants.Count != 0
+            ? db.Plants.Max(plant => plant.Id) + 1
+            : 1;
+        plant.Name = request.Name;
+        plant.Species = request.Species;
+        plant.AgeYears = request.AgeYears;
+        plant.LastWatered = request.LastWatered;
+        plant.LastPruned = request.LastPruned;
+        plant.CareLevel = request.CareLevel;
+
+        db.Plants.Add(plant);
 
         return TypedResults.Ok(new Response(bamboo.Id));
     }

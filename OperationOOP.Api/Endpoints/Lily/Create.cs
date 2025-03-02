@@ -2,7 +2,7 @@
 public class CreateLily : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
-        .MapPost("/lilies", Handle)
+        .MapPost("/plants/lilies", Handle)
         .WithSummary("Lily flowers");
 
     public record Request(
@@ -17,6 +17,7 @@ public class CreateLily : IEndpoint
 
     private static Ok<Response> Handle(Request request, IDatabase db)
     {
+        // Create a new Lily
         var lily = new Lily();
 
         lily.Id = db.Lilies.Count != 0
@@ -30,7 +31,21 @@ public class CreateLily : IEndpoint
         lily.CareLevel = request.CareLevel;
 
         db.Lilies.Add(lily);
-        db.Plants.Add(lily);
+
+        // Create a new Plant (Lily)
+        var plant = new Lily();
+
+        plant.Id = db.Plants.Count != 0
+            ? db.Plants.Max(plant => plant.Id) + 1
+            : 1;
+        plant.Name = request.Name;
+        plant.Species = request.Species;
+        plant.AgeYears = request.AgeYears;
+        plant.LastWatered = request.LastWatered;
+        plant.LastPruned = request.LastPruned;
+        plant.CareLevel = request.CareLevel;
+
+        db.Plants.Add(plant);
 
         return TypedResults.Ok(new Response(lily.Id));
     }

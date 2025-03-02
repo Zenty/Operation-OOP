@@ -2,7 +2,7 @@
 public class CreateBonsai : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
-        .MapPost("/bonsais", Handle)
+        .MapPost("/plants/bonsais", Handle)
         .WithSummary("Bonsai trees");
 
     public record Request(
@@ -18,6 +18,7 @@ public class CreateBonsai : IEndpoint
 
     private static Ok<Response> Handle(Request request, IDatabase db)
     {
+        // Create a new Bonsai
         var bonsai = new Bonsai();
 
         bonsai.Id = db.Bonsais.Count != 0
@@ -32,7 +33,21 @@ public class CreateBonsai : IEndpoint
         bonsai.CareLevel = request.CareLevel;
 
         db.Bonsais.Add(bonsai);
-        db.Plants.Add(bonsai);
+
+        // Create a new Plant (Bonsai)
+        var plant = new Bonsai();
+
+        plant.Id = db.Plants.Count != 0
+            ? db.Plants.Max(plant => plant.Id) + 1
+            : 1;
+        plant.Name = request.Name;
+        plant.Species = request.Species;
+        plant.AgeYears = request.AgeYears;
+        plant.LastWatered = request.LastWatered;
+        plant.LastPruned = request.LastPruned;
+        plant.CareLevel = request.CareLevel;
+
+        db.Plants.Add(plant);
 
         return TypedResults.Ok(new Response(bonsai.Id));
     }

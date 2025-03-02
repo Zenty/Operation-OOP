@@ -14,17 +14,22 @@ namespace OperationOOP.Core.Services
 
         public List<Plant> SortByPlantId(List<Plant> list) // Sort by plant Id
         {
-            throw new NotImplementedException();
+            return list.OrderBy(p => p.Id).ToList(); // I use the LINQ method OrderBy to sort my plant list by Id.
         }
 
         public List<Plant> SortByPlantName(List<Plant> list) // Sort by plant Name
         {
-            throw new NotImplementedException();
+            return list.OrderBy(p => p.Name).ToList(); // I use the LINQ method OrderBy to sort my plant list by Name.
         }
 
         public List<Plant> SortByPlantAge(List<Plant> list) // Sort by plant Age
         {
-            throw new NotImplementedException();
+            return list.OrderBy(p => p.AgeYears).ToList(); // I use the LINQ method OrderBy to sort my plant list by Age.
+        }
+
+        public List<Plant> SortByPlantCareLevel(List<Plant> list) // Sort by plant CareLevel
+        {
+            return list.OrderBy(p => p.CareLevel).ToList(); // I use the LINQ method OrderBy to sort my plant list by CareLevel.
         }
     }
 }

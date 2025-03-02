@@ -12,5 +12,6 @@ namespace OperationOOP.Core.Interfaces
         List<Plant> SortByPlantId(List<Plant> list);
         List<Plant> SortByPlantName(List<Plant> list);
         List<Plant> SortByPlantAge(List<Plant> list);
+        List<Plant> SortByPlantCareLevel(List<Plant> list);
     }
 }

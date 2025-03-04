@@ -1,4 +1,6 @@
-﻿namespace OperationOOP.Api.Endpoints;
+﻿using OperationOOP.Core.Models;
+
+namespace OperationOOP.Api.Endpoints;
 public class GetLily : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
@@ -18,9 +20,10 @@ public class GetLily : IEndpoint
         CareLevel CareLevel
     );
 
-    private static Response Handle([AsParameters] Request request, IDatabase db)
+    private static Response? Handle([AsParameters] Request request, IDatabase db)
     {
         var lily = db.Lilies.Find(lily => lily.Id == request.Id);
+        if (lily == null) return Results.NotFound("Lily not found") as Response;
 
         // map lily to response dto
         var response = new Response(

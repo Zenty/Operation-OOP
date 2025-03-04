@@ -18,9 +18,10 @@ public class GetBamboo : IEndpoint
         CareLevel CareLevel
     );
 
-    private static Response Handle([AsParameters] Request request, IDatabase db)
+    private static Response? Handle([AsParameters] Request request, IDatabase db)
     {
         var bamboo = db.Bamboos.Find(bamboo => bamboo.Id == request.Id);
+        if (bamboo == null) return Results.NotFound("Bamboo not found") as Response;
 
         // map bamboo to response dto
         var response = new Response(

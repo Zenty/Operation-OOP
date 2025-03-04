@@ -1,4 +1,6 @@
-﻿namespace OperationOOP.Api.Endpoints;
+﻿using OperationOOP.Core.Models;
+
+namespace OperationOOP.Api.Endpoints;
 public class GetBonsai : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
@@ -19,9 +21,10 @@ public class GetBonsai : IEndpoint
         CareLevel CareLevel
     );
 
-    private static Response Handle([AsParameters] Request request, IDatabase db)
+    private static Response? Handle([AsParameters] Request request, IDatabase db)
     {
         var bonsai = db.Bonsais.Find(bonsai => bonsai.Id == request.Id);
+        if (bonsai == null) return Results.NotFound("Bonsai not found") as Response;
 
         // map bonsai to response dto
         var response = new Response(

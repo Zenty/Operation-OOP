@@ -1,4 +1,6 @@
-﻿namespace OperationOOP.Api.Endpoints;
+﻿using OperationOOP.Core.Models;
+
+namespace OperationOOP.Api.Endpoints;
 public class GetLotus : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
@@ -18,9 +20,10 @@ public class GetLotus : IEndpoint
         CareLevel CareLevel
     );
 
-    private static Response Handle([AsParameters] Request request, IDatabase db)
+    private static Response? Handle([AsParameters] Request request, IDatabase db)
     {
         var lotus = db.Lotuses.Find(lotus => lotus.Id == request.Id);
+        if (lotus == null) return Results.NotFound("Lotus not found") as Response;
 
         // map lotus to response dto
         var response = new Response(

@@ -3,6 +3,7 @@ public class CreateLotus : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapPost("/plants/lotuses", Handle)
+        .WithTags("Lotus EndPoints")
         .WithSummary("Lotus flowers");
 
     public record Request(

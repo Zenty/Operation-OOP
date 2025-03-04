@@ -5,6 +5,7 @@ public class GetSortedByAge : IEndpoint
     // Mapping
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapGet("/plants/sort/age", Handle)
+        .WithTags("Plant Sort EndPoints")
         .WithSummary("Plants sorted by Age");
 
     // Request and Response types

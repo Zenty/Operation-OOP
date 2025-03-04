@@ -4,6 +4,7 @@ public class GetAllBamboos : IEndpoint
     // Mapping
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapGet("/plants/bamboos", Handle)
+        .WithTags("Bamboo EndPoints")
         .WithSummary("Bamboo trees");
 
     // Request and Response types

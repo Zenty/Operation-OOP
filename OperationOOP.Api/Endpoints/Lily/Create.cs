@@ -3,6 +3,7 @@ public class CreateLily : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapPost("/plants/lilies", Handle)
+        .WithTags("Lily EndPoints")
         .WithSummary("Lily flowers");
 
     public record Request(

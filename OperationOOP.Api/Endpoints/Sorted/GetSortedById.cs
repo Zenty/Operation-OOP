@@ -5,6 +5,7 @@ public class GetSortedById: IEndpoint
     // Mapping
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapGet("/plants/sort/id", Handle)
+        .WithTags("Plant Sort EndPoints")
         .WithSummary("Plants sorted by ID");
 
     // Request and Response types

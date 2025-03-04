@@ -3,6 +3,7 @@ public class CreateBamboo : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapPost("/plants/bamboos", Handle)
+        .WithTags("Bamboo EndPoints")
         .WithSummary("Bamboo trees");
 
     public record Request(
@@ -14,7 +15,7 @@ public class CreateBamboo : IEndpoint
         CareLevel CareLevel
         );
     public record Response(int Id);
-
+    
     private static Ok<Response> Handle(Request request, IDatabase db)
     {
         // Create a new Bamboo

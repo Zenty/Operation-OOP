@@ -4,6 +4,7 @@ public class GetAllBonsais : IEndpoint
     // Mapping
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapGet("/plants/bonsais", Handle)
+        .WithTags("Bonsai EndPoints")
         .WithSummary("Bonsai trees");
 
     // Request and Response types

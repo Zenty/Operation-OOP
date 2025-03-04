@@ -4,6 +4,7 @@ public class GetAllPlants : IEndpoint
     // Mapping
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapGet("/plants", Handle)
+        .WithTags("Plant EndPoints")
         .WithSummary("Plants");
 
     // Request and Response types

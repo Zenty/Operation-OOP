@@ -3,6 +3,7 @@ public class GetBamboo : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapGet("/plants/bamboos/{id}", Handle)
+        .WithTags("Bamboo EndPoints")
         .WithSummary("Bamboo trees");
 
     public record Request(int Id);

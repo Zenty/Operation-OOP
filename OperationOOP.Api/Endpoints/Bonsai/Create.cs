@@ -3,6 +3,7 @@ public class CreateBonsai : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapPost("/plants/bonsais", Handle)
+        .WithTags("Bonsai EndPoints")
         .WithSummary("Bonsai trees");
 
     public record Request(

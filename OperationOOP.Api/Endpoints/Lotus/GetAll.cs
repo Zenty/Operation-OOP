@@ -4,6 +4,7 @@ public class GetAllLotuses : IEndpoint
     // Mapping
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapGet("/plants/lotuses", Handle)
+        .WithTags("Lotus EndPoints")
         .WithSummary("Lotus flowers");
 
     // Request and Response types
